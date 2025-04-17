@@ -93,13 +93,6 @@ if uploaded_file is not None:
 
     st.subheader("🖼️ 画像表示")
 
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        st.image(tensor_to_img(input_tensor), caption=f"Original: {label_name}", use_container_width=True)
-
-    with col2:
-        st.image(tensor_to_img(clipped_adv), caption=f"PGD Adversarial: {adv_label_name}", use_container_width=True)
-
-    with col3:
-        st.image(tensor_to_img(noise_abs), caption="Noise", use_container_width=True)
+    st.image(tensor_to_img(input_tensor), caption=f"Original: {label_name}", use_container_width=True)
+    st.image(tensor_to_img(clipped_adv), caption=f"PGDAdversarial: {adv_label_name}", use_container_width=True)
+    st.image(tensor_to_img(noise_abs), caption="Noise", use_container_width=True)
