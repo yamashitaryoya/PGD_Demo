@@ -18,6 +18,9 @@ import io
 st.title("🔒 PGD攻撃デモ")
 #st.write("画像をアップロードし、PGD攻撃により分類がどのように変化するかを確認できます。")
 
+epsilons = st.slider("Epsilon (ノイズ量)", 0.0, 0.1, 0.03, step=0.005)
+
+
 # ===============================
 # 3. 画像アップロード
 # ===============================
@@ -60,7 +63,7 @@ if uploaded_file is not None:
     # 8. PGD攻撃
     # ===============================
     attack = fb.attacks.LinfPGD(steps=40, rel_stepsize=0.05, random_start=True)
-    epsilons = 0.03
+    #epsilons = 0.03
     raw_adv, clipped_adv, is_adv = attack(fmodel, input_tensor, torch.tensor([label]).to(device), epsilons=epsilons)
 
     # 敵対ラベルの取得
